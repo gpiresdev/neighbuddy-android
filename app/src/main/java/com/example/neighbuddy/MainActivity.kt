@@ -24,13 +24,7 @@ class MainActivity : ComponentActivity() {
                 // create a route for the login screen
                 NavHost(navController = navController, startDestination = "login") {
                     composable("login") {
-                        Surface(
-                            modifier = Modifier
-                                .fillMaxSize(),
-                            color = MaterialTheme.colorScheme.background
-                        ) {
-                            Login()
-                        }
+                        Login()
                     }
                 }
             }
@@ -42,6 +36,6 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun DefaultPreview() {
     NeighBuddyTheme {
-        LoginForm("", "")
+        LoginForm("", "", onNameChange = {}, onPasswordChange = {})
     }
 }

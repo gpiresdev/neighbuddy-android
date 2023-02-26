@@ -20,7 +20,7 @@ fun Login() {
         color = MaterialTheme.colorScheme.background
     ) {
         Column() {
-            LoginForm(name, password)
+            LoginForm(name, password, onNameChange = setName, onPasswordChange = setPassword)
         }
     }
 }
