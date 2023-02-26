@@ -6,7 +6,6 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
@@ -20,8 +19,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             NeighBuddyTheme {
+                // create a nav controller
                 val navController = rememberNavController()
-
                 // create a route for the login screen
                 NavHost(navController = navController, startDestination = "login") {
                     composable("login") {
@@ -30,9 +29,7 @@ class MainActivity : ComponentActivity() {
                                 .fillMaxSize(),
                             color = MaterialTheme.colorScheme.background
                         ) {
-                            Column() {
-                                LoginForm("", "")
-                            }
+                            Login()
                         }
                     }
                 }
@@ -40,8 +37,6 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
-
 
 @Preview(showBackground = true)
 @Composable
