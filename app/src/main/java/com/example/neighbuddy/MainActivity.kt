@@ -11,6 +11,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.neighbuddy.screen.Dashboard
 import com.example.neighbuddy.screen.Login
 import com.example.neighbuddy.ui.theme.NeighBuddyTheme
 
@@ -24,7 +25,12 @@ class MainActivity : ComponentActivity() {
                 // create a route for the login screen
                 NavHost(navController = navController, startDestination = "login") {
                     composable("login") {
-                        Login()
+                        Login(
+                            navController = navController
+                        )
+                    }
+                    composable("dashboard") {
+                        Dashboard()
                     }
                 }
             }
@@ -36,6 +42,6 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun DefaultPreview() {
     NeighBuddyTheme {
-        LoginForm("", "", onNameChange = {}, onPasswordChange = {})
+        LoginForm("", "", onNameChange = {}, onPasswordChange = {}, onLogin = {})
     }
 }

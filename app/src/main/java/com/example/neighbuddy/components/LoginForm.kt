@@ -19,8 +19,9 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun LoginForm(name: String, password: String, onNameChange: (String) -> Unit, onPasswordChange: (String) -> Unit) {
+fun LoginForm(name: String, password: String, onNameChange: (String) -> Unit, onPasswordChange: (String) -> Unit, onLogin: () -> Unit) {
     var (passwordVisible, setPasswordVisible) = rememberSaveable { mutableStateOf(false) }
+
     // Logo
     Column(
         modifier = Modifier
@@ -75,7 +76,7 @@ fun LoginForm(name: String, password: String, onNameChange: (String) -> Unit, on
 
         // Create a button with the text "Login"
         Button(
-            onClick = { /*TODO*/ },
+            onClick = onLogin,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(32.dp, 16.dp),
