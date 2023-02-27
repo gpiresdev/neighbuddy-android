@@ -2,6 +2,7 @@ package com.example.neighbuddy
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
@@ -12,15 +13,18 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
+import androidx.core.view.ViewCompat.FocusDirection
 
 @Composable
 fun LoginForm(name: String, password: String, onNameChange: (String) -> Unit, onPasswordChange: (String) -> Unit, onLogin: () -> Unit) {
     var (passwordVisible, setPasswordVisible) = rememberSaveable { mutableStateOf(false) }
+    val focusManager = LocalFocusManager.current
 
     // Logo
     Column(
@@ -47,7 +51,10 @@ fun LoginForm(name: String, password: String, onNameChange: (String) -> Unit, on
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(32.dp, 4.dp),
-            label = { Text("Usuário") }
+            label = { Text("Usuário") },
+            singleLine = true,
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
+            keyboardActions = KeyboardActions(onDone = { focusManager.moveFocus(androidx.compose.ui.focus.FocusDirection.Down) })
         )
 
         TextField(
@@ -57,8 +64,10 @@ fun LoginForm(name: String, password: String, onNameChange: (String) -> Unit, on
                 .fillMaxWidth()
                 .padding(32.dp, 4.dp),
             label = { Text("Senha") },
+            singleLine = true,
             visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+            keyboardActions = KeyboardActions(onDone = { onLogin() }),
             trailingIcon = {
                 val image = if (passwordVisible)
                     Icons.Filled.Visibility
@@ -79,10 +88,7 @@ fun LoginForm(name: String, password: String, onNameChange: (String) -> Unit, on
             onClick = onLogin,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(32.dp, 16.dp),
-            colors = ButtonDefaults.buttonColors(
-                containerColor = MaterialTheme.colorScheme.primary,
-            )
+                .padding(32.dp, 16.dp)
         ) {
             Text("Login", color = MaterialTheme.colorScheme.onPrimary)
         }
