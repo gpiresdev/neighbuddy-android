@@ -21,6 +21,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.core.view.ViewCompat.FocusDirection
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LoginForm(name: String, password: String, onNameChange: (String) -> Unit, onPasswordChange: (String) -> Unit, onLogin: () -> Unit) {
     var (passwordVisible, setPasswordVisible) = rememberSaveable { mutableStateOf(false) }
