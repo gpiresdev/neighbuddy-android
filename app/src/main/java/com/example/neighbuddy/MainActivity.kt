@@ -9,17 +9,15 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.content.ContextCompat
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.neighbuddy.screen.Dashboard
-import com.example.neighbuddy.screen.Login
 import com.example.neighbuddy.ui.theme.NeighBuddyTheme
 import com.google.android.gms.location.FusedLocationProviderClient
 import androidx.activity.viewModels
+import androidx.compose.material3.ExperimentalMaterial3Api
 import com.example.neighbuddy.components.MapViewModel
+import com.example.neighbuddy.navigation.RootNavigationGraph
 import com.google.android.gms.location.LocationServices
-
+@ExperimentalMaterial3Api
 class MainActivity : ComponentActivity() {
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private val viewModel: MapViewModel by viewModels()
@@ -53,17 +51,7 @@ class MainActivity : ComponentActivity() {
                 askPermissions()
                 // create a nav controller
                 val navController = rememberNavController()
-                // create a route for the login screen
-                NavHost(navController = navController, startDestination = "login") {
-                    composable("login") {
-                        Login(
-                            navController = navController
-                        )
-                    }
-                    composable("dashboard") {
-                        Dashboard(viewModel.state.value)
-                    }
-                }
+                RootNavigationGraph(navHostController = navController, mapState = viewModel.state.value)
             }
         }
     }

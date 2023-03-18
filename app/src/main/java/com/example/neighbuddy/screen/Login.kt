@@ -10,6 +10,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 import com.example.neighbuddy.LoginForm
+import com.example.neighbuddy.navigation.Graph
 
 @Composable
 fun Login(navController: NavController) {
@@ -22,8 +23,12 @@ fun Login(navController: NavController) {
     ) {
         Column() {
             LoginForm(name, password, onNameChange = setName, onPasswordChange = setPassword, onLogin = {
-                navController.navigate("dashboard")
+                navController.navigate(Graph.MAIN)
             })
         }
     }
+}
+
+sealed class LoginScreen(val route: String) {
+    object Login: LoginScreen(route = "login")
 }

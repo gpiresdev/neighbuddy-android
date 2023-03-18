@@ -1,4 +1,4 @@
-package com.example.neighbuddy
+package com.example.neighbuddy.components
 
 import android.location.Location
 

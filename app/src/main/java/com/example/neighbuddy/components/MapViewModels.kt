@@ -5,7 +5,6 @@ import android.util.Log
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
-import com.example.neighbuddy.MapState
 
 import com.google.android.gms.location.FusedLocationProviderClient
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -34,7 +33,6 @@ class MapViewModel @Inject constructor(): ViewModel() {
                     state.value = state.value.copy(
                         lastKnownLocation = task.result,
                     )
-                    Log.i("MapViewModel", "Location: ${task.result}")
                 }
             }
         } catch (e: SecurityException) {
