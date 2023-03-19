@@ -1,29 +1,30 @@
 package com.example.neighbuddy.screen
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
+import android.app.DatePickerDialog
+import android.widget.DatePicker
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.EventNote
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-
-
-import androidx.navigation.NavController
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.example.neighbuddy.components.MapState
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @ExperimentalMaterial3Api
 @Composable
-fun DashboardScreen(navController: NavHostController, mapState: MapState) {
+fun BookingScreen(navController: NavHostController) {
     Scaffold(
         bottomBar = {
             BottomAppBar() {
                 Row() {
                     NavigationBarItem(
-                        selected = true,
+                        selected = false,
                         onClick = {navController.navigate("dashboard")},
                         icon = { Icon(Icons.Default.Home, contentDescription = "Home") }
                     )
@@ -35,8 +36,8 @@ fun DashboardScreen(navController: NavHostController, mapState: MapState) {
                     )
 
                     NavigationBarItem(
-                        selected = false,
-                        onClick = {navController.navigate("bookings")},
+                        selected = true,
+                        onClick = {},
                         icon = { Icon(Icons.Default.EventNote, contentDescription = "Reservas") }
                     )
                 }
@@ -48,7 +49,11 @@ fun DashboardScreen(navController: NavHostController, mapState: MapState) {
             }
         },
         content = {
-            Dashboard(state = mapState)
+            Column(modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp)) {
+                Text(text = "Reservas", style = MaterialTheme.typography.headlineMedium)
+            }
         }
     )
 }

@@ -14,8 +14,13 @@ import com.example.neighbuddy.ui.theme.NeighBuddyTheme
 import com.google.android.gms.location.FusedLocationProviderClient
 import androidx.activity.viewModels
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import com.example.neighbuddy.components.MapViewModel
-import com.example.neighbuddy.navigation.RootNavigationGraph
+import com.example.neighbuddy.screen.BookingScreen
+import com.example.neighbuddy.screen.DashboardScreen
+import com.example.neighbuddy.screen.Login
+import com.example.neighbuddy.screen.NotificationsScreen
 import com.google.android.gms.location.LocationServices
 @ExperimentalMaterial3Api
 class MainActivity : ComponentActivity() {
@@ -51,7 +56,20 @@ class MainActivity : ComponentActivity() {
                 askPermissions()
                 // create a nav controller
                 val navController = rememberNavController()
-                RootNavigationGraph(navHostController = navController, mapState = viewModel.state.value)
+                NavHost(navController = navController, startDestination = "login") {
+                    composable(route = "login") {
+                        Login(navController = navController)
+                    }
+                    composable(route = "dashboard") {
+                        DashboardScreen(navController = navController, mapState = viewModel.state.value)
+                    }
+                    composable(route = "notifications") {
+                        NotificationsScreen(navController = navController)
+                    }
+                    composable(route = "bookings") {
+                        BookingScreen(navController = navController)
+                    }
+                }
             }
         }
     }
