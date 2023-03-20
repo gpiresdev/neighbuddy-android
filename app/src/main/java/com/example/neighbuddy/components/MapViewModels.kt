@@ -5,13 +5,16 @@ import android.util.Log
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
+import com.example.neighbuddy.domain.repository.MyRepository
 
 import com.google.android.gms.location.FusedLocationProviderClient
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class MapViewModel @Inject constructor(): ViewModel() {
+class MapViewModel @Inject constructor(
+    private val repository: MyRepository
+): ViewModel() {
     val state: MutableState<MapState> = mutableStateOf(
         MapState(
             lastKnownLocation = null

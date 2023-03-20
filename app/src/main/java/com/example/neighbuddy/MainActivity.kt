@@ -22,6 +22,9 @@ import com.example.neighbuddy.screen.DashboardScreen
 import com.example.neighbuddy.screen.Login
 import com.example.neighbuddy.screen.NotificationsScreen
 import com.google.android.gms.location.LocationServices
+import dagger.hilt.android.AndroidEntryPoint
+
+@AndroidEntryPoint
 @ExperimentalMaterial3Api
 class MainActivity : ComponentActivity() {
     private lateinit var fusedLocationClient: FusedLocationProviderClient
