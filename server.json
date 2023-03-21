@@ -1,0 +1,50 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "email": "teste@teste.com",
+      "password": "12345",
+      "alerts": [
+        {
+          "name": "Alerta 1",
+          "description": "Descrição do alerta 1",
+          "date": "2019-01-01",
+          "latitude": 123.123,
+          "longitude": 123.123
+        }
+      ],
+      "notifications": [
+        {
+          "name": "Notificacao 1",
+          "description": "Descrição da notificacao 1",
+          "date": "2019-01-01"
+        }
+      ],
+      "bookings": []
+    },
+    {
+      "id": 2,
+      "name": "John Doe",
+      "email": "teste2@teste.com",
+      "password": "12345",
+      "alerts": [
+        {
+          "name": "Alerta 2",
+          "description": "Descrição do alerta 2",
+          "date": "2019-01-01",
+          "latitude": 123.123,
+          "longitude": 123.123
+        }
+      ],
+      "notifications": [
+        {
+          "name": "Notificacao 2",
+          "description": "Descrição da notificacao 2",
+          "date": "2019-01-01"
+        }
+      ],
+      "bookings": []
+    }
+  ]
+}

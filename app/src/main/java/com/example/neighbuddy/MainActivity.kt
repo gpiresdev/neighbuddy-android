@@ -3,6 +3,7 @@ package com.example.neighbuddy
 import android.Manifest.permission.ACCESS_FINE_LOCATION
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
@@ -16,19 +17,24 @@ import androidx.activity.viewModels
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.neighbuddy.components.MainViewModel
 import com.example.neighbuddy.components.MapViewModel
+import com.example.neighbuddy.domain.repository.MyRepository
 import com.example.neighbuddy.screen.BookingScreen
 import com.example.neighbuddy.screen.DashboardScreen
 import com.example.neighbuddy.screen.Login
 import com.example.neighbuddy.screen.NotificationsScreen
 import com.google.android.gms.location.LocationServices
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 @ExperimentalMaterial3Api
 class MainActivity : ComponentActivity() {
+    @Inject lateinit var myRepository: MyRepository;
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private val viewModel: MapViewModel by viewModels()
+    private val mainViewModel: MainViewModel by viewModels()
 
     private val requestPermissionLauncher =
         registerForActivityResult(
