@@ -6,3 +6,6 @@ Projeto feito para fins de aprendizagem em projetos nativos android.
 - Jetpack Compose 3
 - Dagger Hilt (injeçäo de dependencias)
 - Retrofit (chamadas api)
+
+## APIs
+- Google Maps
